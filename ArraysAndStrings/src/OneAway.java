@@ -44,4 +44,31 @@ public class OneAway {
         }
         return true;
     }
+
+    // method 2: combine edit replace and edit insert functions together
+    public boolean oneEditAwayII(String first, String second) {
+        if (Math.abs(first.length() - second.length()) > 1) {
+            return false;
+        }
+        String s1 = first.length() < second.length() ? first : second;
+        String s2 = first.length() < second.length() ? second : first;
+        int i = 0;
+        int j = 0;
+        boolean found = false;
+        while (i < s1.length() && j < s2.length()) {
+            if (s1.charAt(i) != s2.charAt(j)) {
+                if (found) {
+                    return false;
+                }
+                found = true;
+                if (s1.length() == s2.length()) {
+                    i++;
+                }
+            } else {
+                i++;
+            }
+            j++;
+        }
+        return true;
+    }
 }
